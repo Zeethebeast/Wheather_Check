@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    // Base directory for resolving non-relative module imports
+    "baseUrl": ".",
+    
+    // Path mappings for module resolution
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    
+    // Location to store incremental compilation information
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    
+    // Specify ECMAScript target version
+    "target": "ES2020",
+    
+    // Enable the use of `define` property in class fields
+    "useDefineForClassFields": true,
+    
+    // Libraries to include
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    
+    // Module system to use in the output
+    "module": "ESNext",
+    
+    // Skip checking library files
+    "skipLibCheck": true,
+    
+    /* Bundler-related options */
+    // Module resolution strategy for bundlers like Vite or Webpack
+    "moduleResolution": "bundler",
+    // Allow importing TypeScript files with explicit extensions
+    "allowImportingTsExtensions": true,
+    // Enforce each file as an isolated module
+    "isolatedModules": true,
+    // Ensure modules are explicitly defined (not auto-detected)
+    "moduleDetection": "force",
+    // Do not emit any output files
+    "noEmit": true,
+    // JSX transformation mode for React
+    "jsx": "react-jsx",
+    
+    /* Linting and code quality checks */
+    // Enable strict type-checking options
+    "strict": true,
+    // Report unused local variables
+    "noUnusedLocals": true,
+    // Report unused function parameters
+    "noUnusedParameters": true,
+    // Ensure `switch` cases do not fall through
+    "noFallthroughCasesInSwitch": true,
+    // Warn when importing modules with potential side effects
+    "noUncheckedSideEffectImports": true
+  },
+  
+  // Include files in the `src` directory for the TypeScript compiler
+  "include": ["src"]
+}
