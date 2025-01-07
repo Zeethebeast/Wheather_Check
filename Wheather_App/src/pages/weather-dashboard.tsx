@@ -124,6 +124,8 @@ import { useGeolocation } from "@/hooks/use-geolocation";
 import { AlertTriangle, MapPin, RefreshCw } from "lucide-react";
 import CurrentWeather from "@/components/current-weather";
 import HourlyTemperature from "@/components/hourly-temprature";
+import WeatherDetails from "@/components/weather-details";
+import WeatherForecast from "@/components/weather-forecast";
 
 const WeatherDashboard = () => {
   const {
@@ -244,9 +246,11 @@ const WeatherDashboard = () => {
           <HourlyTemperature data={forecastQuery} />
         </div>
 
-        <div>
+        <div className="grid gap-6 md:grid-cols-2 items-start">
           {/* details */}
+          <WeatherDetails data={weatherQuery.data} />
           {/* forecast */}
+          <WeatherForecast data={forecastQuery.data} />
         </div>
       </div>
     </div>
