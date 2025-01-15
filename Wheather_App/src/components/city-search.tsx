@@ -9,11 +9,12 @@ import {
   CommandSeparator,
 } from "./ui/command";
 import { Button } from "./ui/button";
-import { Clock, Loader2, Search, XCircle } from "lucide-react";
+import { Clock, Loader2, Search, Star, XCircle } from "lucide-react";
 import { useLocationSearch } from "@/hooks/use-weather";
 import { useNavigate } from "react-router-dom";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { format } from "date-fns";
+import { useFavorite } from "@/hooks/use-favorite";
 
 const CitySearch = () => {
   const [open, setOpen] = useState(false);
@@ -40,6 +41,8 @@ const CitySearch = () => {
     navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
   };
 
+  const { favorites } = useFavorite();
+
   return (
     <>
       <Button
@@ -61,14 +64,35 @@ const CitySearch = () => {
           {query.length > 2 && !isLoading && (
             <CommandEmpty>No City found.</CommandEmpty>
           )}
-          {/* <CommandGroup
-            heading="Favorites"
-            className="text-blue-700 font-bold text-lg p-6 rounded-lg shadow-md border border-blue-700 hover:bg-blue-50 hover:shadow-lg transition-all duration-300"
-          >
-            <CommandItem className="text-blue-700 font-bold text-lg p-6 rounded-lg shadow-md border border-blue-700 hover:bg-blue-50 hover:shadow-lg transition-all duration-300">
-              Calendar
-            </CommandItem>
-          </CommandGroup> */}
+
+          {favorites.length > 0 && (
+            <CommandGroup
+              heading="favorites"
+              className="text-blue-700 font-bold text-lg p-6 rounded-lg shadow-md border border-blue-700 hover:bg-blue-50 hover:shadow-lg transition-all duration-300"
+            >
+              {favorites.map((location) => {
+                return (
+                  <CommandItem
+                    key={location.id}
+                    value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                    onSelect={handleSelect}
+                    className="text-blue-700 font-bold text-lg p-6 rounded-lg shadow-md border border-blue-700 hover:bg-blue-50 hover:shadow-lg transition-all duration-300"
+                  >
+                    <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                    <span>{location.name}</span>
+                    {location.state && (
+                      <span className="text-sm text-muted-foreground">
+                        , {location.state}
+                      </span>
+                    )}
+                    <span className="text-sm text-muted-foreground">
+                      , {location.country}
+                    </span>
+                  </CommandItem>
+                );
+              })}
+            </CommandGroup>
+          )}
 
           {history.length > 0 && (
             <>
