@@ -87,14 +87,14 @@ npm run preview
 
 ```bash
 src/
-  assets/         # Static assets like images, icons
+  public/         # Static assets like images, icons
   components/     # React components used across the app
   hooks/          # Custom hooks like fetching weather data
   pages/          # Page components (Home, Weather details, etc.)
-  services/       # API calls and services (OpenWeatherAPI)
-  styles/         # Global styles
+  api/       # API calls and services (OpenWeatherAPI)
   types/          # TypeScript types and interfaces
   App.tsx         # Main App component
+  App.css 
   index.tsx       # Entry point for React
 ```
 
